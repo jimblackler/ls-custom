@@ -1,0 +1,2 @@
+A Longest Increasing Subsequence finder for TS/JS with a preferable runtime to the most commonly
+seen implementation (n logn vs n^2), and that allows clients to supply a custom comparator.
