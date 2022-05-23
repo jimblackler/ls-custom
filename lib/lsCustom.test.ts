@@ -3,6 +3,7 @@ import {alea, PRNG} from 'seedrandom';
 import {expect} from 'chai';
 import {lsFind} from './lsFinder';
 import {lsScan} from './lsScan';
+import {lsScanR2} from './lsScanR2';
 
 function from(random: PRNG, n: number) {
   return Math.abs(random.int32()) % n;
@@ -30,12 +31,17 @@ function generateTestData(random: PRNG, length: number) {
 }
 
 describe('lsCustom.test', () => {
-  describe('Performs comparison tests', () => range(50).forEach((testNumber : number) =>
+  describe('Performs comparison tests', () => range(50).forEach((testNumber: number) =>
       it(`Test ${testNumber}`, () => {
-        const testData = generateTestData(alea(testNumber.toString()), 10 + testNumber);
+        const testData = generateTestData(alea(testNumber.toString()), 10 + testNumber ** 1.7);
         console.log(testData);
-        const out = lsFind(lsScan, testData.wholeSequence, (a, b) => b > a);
-        expect(out).to.deep.equal(testData.winningSequence);
+        [lsScan, lsScanR2].forEach(lsFinder => {
+          const label = (lsFinder as any).name;
+          console.time(label);
+          const out = lsFind(lsFinder, testData.wholeSequence, (a, b) => b > a);
+          console.timeEnd(label);
+          expect(out).to.deep.equal(testData.winningSequence);
+        });
       }))
   );
 });
