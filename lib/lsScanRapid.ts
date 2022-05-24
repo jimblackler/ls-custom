@@ -1,4 +1,4 @@
-export function* lsScanR2(length: number, canFollow: (i0: number, i1: number) => boolean) {
+export function* lsScanRapid(length: number, canFollow: (i0: number, i1: number) => boolean) {
   const best = [-1];
   const next: number[] = [];
   while (next.length < length) {

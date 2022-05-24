@@ -1,3 +1,3 @@
 export * from './lsFinder';
-export * from './lsScan';
-export * from './lsScanR2';
+export * from './lsScanBrute';
+export * from './lsScanRapid';
