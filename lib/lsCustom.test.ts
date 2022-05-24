@@ -55,7 +55,7 @@ describe('lsCustom.test', () => {
 
   describe('Comparison tests with random data', () => range(10).forEach((testNumber: number) =>
       it(`Test ${testNumber}`, () => {
-        const testData = randomArray(alea(testNumber.toString()), 5 + testNumber ** 1.9, 1000);
+        const testData = randomArray(alea(testNumber.toString()), 3 + testNumber ** 1.9, 1000);
         console.log(testData);
         let reference: number[];
         [lsScanBrute, lsScanRapid].forEach(lsFinder => {
